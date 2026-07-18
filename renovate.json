@@ -1,10 +1,12 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
-    "config:recommended"
+    "config:recommended",
+    "helpers:pinGitHubActionDigestsToSemver"
   ],
   "enabledManagers": [
-    "custom.regex"
+    "custom.regex",
+    "github-actions"
   ],
   "customManagers": [
     {
@@ -13,9 +15,10 @@
       "matchStrings": [
         "(?<currentValue>[0-9.]+)"
       ],
-      "depNameTemplate": "reasonix",
-      "datasourceTemplate": "npm",
-      "versioningTemplate": "semver"
+      "depNameTemplate": "esengine/DeepSeek-Reasonix",
+      "datasourceTemplate": "github-releases",
+      "versioningTemplate": "semver",
+      "extractVersionTemplate": "^v(?<version>.*)$"
     }
   ],
   "baseBranchPatterns": [
@@ -23,7 +26,7 @@
   ],
   "packageRules": [
     {
-      "matchPackageNames": ["reasonix"],
+      "matchPackageNames": ["esengine/DeepSeek-Reasonix"],
       "matchBaseBranches": ["latest"]
     }
   ]
