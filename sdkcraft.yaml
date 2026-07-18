@@ -1,6 +1,5 @@
 name: reasonix
 adopt-info: reasonix
-build-base: ubuntu@24.04
 summary: DeepSeek-native AI coding agent for the terminal
 description: |
   This SDK provides the Reasonix CLI, a DeepSeek-native AI coding agent that
@@ -10,12 +9,14 @@ description: |
 license: MIT
 
 platforms:
-  amd64:
-    build-on: [amd64]
-    build-for: [amd64]
-  arm64:
-    build-on: [amd64]
-    build-for: [arm64]
+  ubuntu@24.04:amd64:
+  ubuntu@26.04:amd64:
+  ubuntu@24.04:arm64:
+    build-on: [ubuntu@24.04:amd64]
+    build-for: [ubuntu@24.04:arm64]
+  ubuntu@26.04:arm64:
+    build-on: [ubuntu@26.04:amd64]
+    build-for: [ubuntu@26.04:arm64]
 
 plugs:
   reasonix-home:
