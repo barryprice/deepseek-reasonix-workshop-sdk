@@ -1,0 +1,37 @@
+name: reasonix
+adopt-info: reasonix
+build-base: ubuntu@24.04
+summary: DeepSeek-native AI coding agent for the terminal
+description: |
+  This SDK provides the Reasonix CLI, a DeepSeek-native AI coding agent that
+  runs as a single static Go binary. Configuration, provider secrets, session
+  history, and checkpoints under the Reasonix home directory are persisted on
+  the host so they survive across workshop updates.
+license: MIT
+
+platforms:
+  amd64:
+    build-on: [amd64]
+    build-for: [amd64]
+  arm64:
+    build-on: [amd64]
+    build-for: [arm64]
+
+plugs:
+  reasonix-home:
+    interface: mount
+    workshop-target: /home/workshop/.reasonix
+
+parts:
+  reasonix:
+    plugin: dump
+    source: .
+    source-type: local
+    override-pull: |
+      VERSION=$(cat "$CRAFT_PROJECT_DIR/VERSION")
+      craftctl set version="$VERSION"
+      curl -fLO "https://github.com/esengine/DeepSeek-Reasonix/releases/download/v${VERSION}/reasonix-linux-${CRAFT_ARCH_BUILD_FOR}.tar.gz"
+      tar -xzf "reasonix-linux-${CRAFT_ARCH_BUILD_FOR}.tar.gz" -C "$CRAFT_PART_SRC" reasonix
+      rm "reasonix-linux-${CRAFT_ARCH_BUILD_FOR}.tar.gz"
+    organize:
+      reasonix: usr/bin/reasonix
