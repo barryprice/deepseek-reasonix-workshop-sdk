@@ -54,6 +54,34 @@ export DEEPSEEK_API_KEY=sk-...        # or let setup save it to the Reasonix hom
 reasonix run "implement the TODOs in main.go"
 ```
 
+Reasonix is not limited to the Deepseek provider, although it is the best supported.
+
+Configuration via other providers is possible via OpenAI/Anthropic compatible endpoints,
+e.g. to configure with OpenRouter, you can edit `~workshop/.reasonix/config.toml` with:
+
+```toml
+default_model = "custom-openrouter-ai/deepseek/deepseek-v4-pro"
+...
+[desktop]
+provider_access = ["custom-openrouter-ai"]
+...
+[[providers]]
+name        = "custom-openrouter-ai"
+kind        = "openai"
+base_url    = "https://openrouter.ai/api/v1/"
+models      = ["deepseek/deepseek-v4-flash", "deepseek/deepseek-v4-pro"]
+default     = "deepseek/deepseek-v4-pro"
+api_key_env = "CUSTOM_OPENROUTER_AI_API_KEY"
+context_window = 128000   # tokens; compaction triggers near this limit
+...
+```
+
+Then just add your OpenRouter API key as `CUSTOM_OPENROUTER_AI_API_KEY=sk-...`
+to `~workshop/reasonix/.env`.
+
+Other providers should follow a similar pattern, providing they offer a
+compatible endpoint.
+
 Configuration and secrets are written under `~/.reasonix`, which is mounted from
 the host and therefore persists across workshop updates.
 
