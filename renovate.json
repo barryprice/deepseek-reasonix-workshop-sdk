@@ -27,7 +27,8 @@
   "packageRules": [
     {
       "matchPackageNames": ["esengine/DeepSeek-Reasonix"],
-      "matchBaseBranches": ["latest"]
+      "matchBaseBranches": ["latest"],
+      "automerge": true
     }
   ]
 }
