@@ -29,7 +29,8 @@
       "matchPackageNames": ["esengine/DeepSeek-Reasonix"],
       "matchBaseBranches": ["latest"],
       "automerge": true,
-      "automergeType": "pr"
+      "automergeType": "pr",
+      "platformAutomerge": true
     }
   ]
 }
