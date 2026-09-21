@@ -32,7 +32,11 @@ parts:
       VERSION=$(cat "$CRAFT_PROJECT_DIR/VERSION")
       craftctl set version="$VERSION"
       curl -fLO "https://github.com/esengine/DeepSeek-Reasonix/releases/download/v${VERSION}/reasonix-linux-${CRAFT_ARCH_BUILD_FOR}.tar.gz"
-      tar -xzf "reasonix-linux-${CRAFT_ARCH_BUILD_FOR}.tar.gz" -C "$CRAFT_PART_SRC" reasonix
+      # Upstream changed the archive layout in v1.38.11: members went from
+      # "reasonix" to "./reasonix". Match the binary by basename so the pull
+      # works regardless of the leading "./" the release happens to use.
+      MEMBER=$(tar -tzf "reasonix-linux-${CRAFT_ARCH_BUILD_FOR}.tar.gz" | grep -E '(^|/)reasonix$')
+      tar -xzf "reasonix-linux-${CRAFT_ARCH_BUILD_FOR}.tar.gz" -C "$CRAFT_PART_SRC" "$MEMBER"
       rm "reasonix-linux-${CRAFT_ARCH_BUILD_FOR}.tar.gz"
     organize:
       reasonix: usr/bin/reasonix
