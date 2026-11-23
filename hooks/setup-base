@@ -1,4 +1,11 @@
 #!/usr/bin/bash
+set -euo pipefail
+
 cat <<EOF >/etc/profile.d/reasonix.sh
 export PATH="${SDK}/usr/bin:\$PATH"
 EOF
+
+# Reasonix's default [sandbox] bash = "enforce" refuses all shell commands
+# unless bubblewrap is available.
+apt-get update
+eatmydata apt-get install bubblewrap
