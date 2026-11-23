@@ -39,9 +39,10 @@ with configuration and credentials persisted between workshop updates.
    a provider API key are all you need.
 2. No specific project layout is needed. Run Reasonix from any directory; use
    `/init` to generate an `AGENTS.md` project memory file for the current repo.
-3. On launch the SDK adds `reasonix` to the `PATH` and mounts the Reasonix home
-   directory (`~/.reasonix`) from the host, so config and secrets written by
-   `reasonix setup` are preserved.
+3. On launch the SDK adds `reasonix` to the `PATH`, installs `bubblewrap` (the
+   OS sandbox Reasonix runs shell commands in by default), and mounts the
+   Reasonix home directory (`~/.reasonix`) from the host, so config and secrets
+   written by `reasonix setup` are preserved.
 
 ### Configure and run
 
