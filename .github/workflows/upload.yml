@@ -18,7 +18,7 @@ concurrency:
 
 jobs:
   build-and-upload:
-    uses: canonical/sdkcraft-actions/.github/workflows/upload.yml@99381343a0e743cd52c04057ea432fe2a7066859 # main
+    uses: canonical/sdkcraft-actions/.github/workflows/upload.yml@4c598a2d8f7b6abd283eba15ec7a9fda8ba76318 # main
     with:
       platforms: '["amd64","arm64"]'
       platform-flag: "--build-for"
