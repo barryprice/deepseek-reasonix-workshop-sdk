@@ -78,7 +78,7 @@ context_window = 128000   # tokens; compaction triggers near this limit
 ```
 
 Then just add your OpenRouter API key as `CUSTOM_OPENROUTER_AI_API_KEY=sk-...`
-to `~workshop/reasonix/.env`.
+to `~workshop/.reasonix/.env`.
 
 Other providers should follow a similar pattern, providing they offer a
 compatible endpoint.
