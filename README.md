@@ -104,6 +104,7 @@ This prints the installed Reasonix version, confirming the binary is on the
 
 - Interface: `mount`
 - Workshop target: `/home/workshop/.reasonix`
+- Mode: `0o700`
 - Purpose: Persists the Reasonix home directory — `config.toml`, provider
   secrets in `.env`, session history, checkpoints, and subagent profiles —
   across workshop updates.
