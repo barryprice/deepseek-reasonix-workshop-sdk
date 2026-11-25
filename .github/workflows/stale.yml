@@ -2,11 +2,8 @@ name: Close stale PRs
 on:
   schedule:
     - cron: '30 7 * * 1'   # every Monday at 7:30 UTC
-  pull_request:
-    types: [opened, reopened, ready_for_review]
 
 permissions:
-  contents: write
   pull-requests: write
 
 jobs:
@@ -20,5 +17,7 @@ jobs:
           close-pr-message: 'Closing this PR because it has been stale for 7 additional days. Feel free to reopen when the work is ready.'
           days-before-stale: 60
           days-before-close: 7
-          only-prs: true
+          # PRs only; -1 also stops issues labelled "Stale" by hand from being closed.
+          days-before-issue-stale: -1
+          days-before-issue-close: -1
 
