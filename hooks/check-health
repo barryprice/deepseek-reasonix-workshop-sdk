@@ -1,7 +1,7 @@
 #!/usr/bin/bash
 set -e
 
-if ! out=$(sudo -u workshop --login reasonix version 2>&1); then
+if ! out=$(sudo -u workshop reasonix version 2>&1); then
     workshopctl set-health error "reasonix version failed: $out"
     exit 0
 fi
